@@ -59,7 +59,7 @@ const styles = {
   page: {
     background: "#fff",
     borderRadius: "12px",
-    padding: "24px",
+    padding: "30px",
     boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
     boxSizing: "border-box",
     overflow: "hidden",

@@ -10,8 +10,15 @@ import LoginForm from "./components/LoginForm";
 import MainDashboard from "./components/MainDashboard";
 import IAModule from "./components/IAModule";
 import ExpedientesModule from "./components/ExpedientesModule";
+import ExpedienteDetailModule from "./components/ExpedienteDetailModule";
+import ExpedienteDetailPage from "./components/ExpedienteDetailPage";
 import FamiliasModule from "./components/FamiliasModule";
+import FamilyDetailModule from "./components/FamiliaDetailModule";
+import FamilyDetailPage from "./components/FamiliaDetailPage";
+
 import HogaresModule from "./components/HogaresModule";
+import HogarDetailModule from "./components/HogarDetailModule";
+
 import InformesModule from "./components/InformesModule";
 
 function ProtectedRoute({ children }) {
@@ -37,7 +44,7 @@ function App() {
 
   return (
     <Router>
-      {/* 🔥 ESTE ES EL CONTENEDOR GLOBAL QUE CENTRA TODO */}
+      {/* ESTE ES EL CONTENEDOR GLOBAL QUE CENTRA TODO */}
       <div
         style={{
           minHeight: "100vh",
@@ -75,6 +82,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
+              <Route
+                path="/expedientes/:id"
+                element={
+                  <ProtectedRoute>
+                  <ExpedienteDetailPage />
+                  </ProtectedRoute>
+                     }
+                      />
+
 
             <Route
               path="/expedientes"
@@ -84,6 +100,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+          <Route path="/expedientes/:id"
+            element={
+             <ProtectedRoute>
+            <ExpedienteDetailPage user={user} onLogout={handleLogout} />
+             </ProtectedRoute> }
+          />
+
+
 
             <Route
               path="/familias"
@@ -93,6 +117,12 @@ function App() {
                 </ProtectedRoute>
               }
             />
+           <Route
+               path="/familias/:id"
+             element={<FamilyDetailPage user={user} onLogout={handleLogout} />}/>
+
+
+
 
             <Route
               path="/hogares"
@@ -102,6 +132,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/hogares/:id"
+              element={
+             <ProtectedRoute>
+            <HogarDetailModule user={user} onLogout={handleLogout} />
+             </ProtectedRoute>
+                   }
+            />
+
 
             <Route
               path="/informes"

@@ -1,6 +1,7 @@
 // src/components/LoginForm.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "/Users/melin/TFG MELINA/sistema-adopcion/frontend-react/public/logo.png"; // 
 
 function LoginForm({ onLoginSuccess }) {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -33,7 +34,6 @@ function LoginForm({ onLoginSuccess }) {
         if (onLoginSuccess) onLoginSuccess(data.user);
 
         setMessage("✅ Login exitoso");
-        // Redirigir al dashboard
         navigate("/", { replace: true });
       } else {
         setMessage(`❌ ${data.error || "Error al iniciar sesión"}`);
@@ -46,68 +46,112 @@ function LoginForm({ onLoginSuccess }) {
   };
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <label style={styles.label}>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          style={styles.input}
-          required
-        />
+    <div style={styles.page}>
+      <div style={styles.container}>
+        <img src={logo} alt="Logo del sistema" style={styles.logo} />
 
-        <label style={styles.label}>Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          style={styles.input}
-          required
-        />
+        <h2 style={styles.title}>Iniciar Sesión</h2>
+        <p style={styles.subtitle}></p>
 
-        <button style={styles.button} disabled={loading}>
-          {loading ? "Ingresando..." : "Iniciar Sesión"}
-        </button>
-      </form>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <label style={styles.label}>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            style={styles.input}
+            required
+          />
 
-      {message && <p style={styles.message}>{message}</p>}
+          <label style={styles.label}>Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            style={styles.input}
+            required
+          />
+
+          <button style={styles.button} disabled={loading}>
+            {loading ? "Ingresando..." : "Iniciar Sesión"}
+          </button>
+        </form>
+
+        {message && <p style={styles.message}>{message}</p>}
+      </div>
     </div>
   );
 }
 
 const styles = {
-  container: {
-    maxWidth: "420px",
-    margin: "40px auto",
-    padding: "20px",
-    border: "1px solid #ccc",
-    borderRadius: "10px",
-    background: "#fff",
+  page: {
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    paddingTop: "0px",
+    alignItems: "center",
+    background: "#f2f3f4ff", // gris clarito
   },
-  title: { textAlign: "center", marginBottom: "20px" },
-  form: { display: "flex", flexDirection: "column" },
-  label: { fontWeight: "bold", marginBottom: "5px" },
+  container: {
+    width: "380px",
+    padding: "26px 30px",
+    borderRadius: "12px",
+    background: "#fff",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+    borderTop: "6px solid #adb8d0ff", // 
+    boxSizing: "border-box",
+    textAlign: "center",
+  },
+  logo: {
+    width: "250px",
+    marginBottom: "8px",
+  },
+  title: {
+    textAlign: "center",
+    marginBottom: "4px",
+    fontSize: "1.4rem",
+    fontWeight: "600",
+    color: "#000000ff", // mg este color para el login
+  },
+  subtitle: {
+    fontSize: "0.9rem",
+    color: "#9d5787ff",
+    marginBottom: "16px",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  label: {
+    fontWeight: "bold",
+    marginBottom: "5px",
+    textAlign: "left",
+    fontSize: "0.85rem",
+  },
   input: {
     padding: "10px",
-    borderRadius: "5px",
-    border: "1px solid #aaa",
-    marginBottom: "15px",
+    borderRadius: "6px",
+    border: "1px solid #010103ff  ",
+    marginBottom: "14px",
+    fontSize: "0.95rem",
   },
   button: {
     padding: "10px",
-    background: "#0066ff",
+    background: "#adb8d0ff", // 
     color: "white",
     border: "none",
-    borderRadius: "5px",
+    borderRadius: "6px",
+    fontSize: "1rem",
+    fontWeight: "500",
+    cursor: "pointer",
   },
   message: {
     marginTop: "15px",
     textAlign: "center",
     fontWeight: "bold",
+    fontSize: "0.9rem",
   },
 };
 

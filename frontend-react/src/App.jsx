@@ -15,7 +15,7 @@ import ExpedienteDetailPage from "./components/ExpedienteDetailPage";
 import FamiliasModule from "./components/FamiliasModule";
 import FamilyDetailModule from "./components/FamiliaDetailModule";
 import FamilyDetailPage from "./components/FamiliaDetailPage";
-
+import ChatAssistant from "./components/ChatAssistant";
 import HogaresModule from "./components/HogaresModule";
 import HogarDetailModule from "./components/HogarDetailModule";
 
@@ -41,6 +41,7 @@ function App() {
     localStorage.removeItem("user");
     setUser(null);
   };
+ 
 
   return (
     <Router>
@@ -154,6 +155,10 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
+        <>
+  {/* tus rutas aquí */}
+  <ChatAssistant />
+</>
       </div>
     </Router>
   );
